@@ -26,9 +26,7 @@ function generatePostList() {
 
 //JSON 데이터를 가져와 시간표 테이블을 만드는 함수
 function generateTimetable() {
-  const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-  const dayOfWeek = daysOfWeek[new Date().getDay()];
-  fetch('/getTimetable?day='+dayOfWeek, headers)
+  fetch('/getTimetable', headers)
     .then(response => response.json())
     .then(data => {
       const timetableList = document.getElementById('timetableList');
