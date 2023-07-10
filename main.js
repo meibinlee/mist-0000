@@ -23,9 +23,12 @@ function generatePostList() {
     });
 }
 
+
 //JSON 데이터를 가져와 시간표 테이블을 만드는 함수
 function generateTimetable() {
-  fetch('/getTimetable', headers)
+  const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  const dayOfWeek = daysOfWeek[new Date().getDay()];
+  fetch('/getTimetable?day='+dayOfWeek, headers)
     .then(response => response.json())
     .then(data => {
       const timetableList = document.getElementById('timetableList');
@@ -35,7 +38,7 @@ function generateTimetable() {
       const daysOfWeek = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
       const dayOfWeek = daysOfWeek[new Date().getDay()];
       const day = document.createElement('h2');
-      day.textContent = dayOfWeek;
+      day.innerHTML = dayOfWeek;
       timetableList.appendChild(day);
 
       timetables.forEach(timetable => {
